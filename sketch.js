@@ -48,19 +48,20 @@ function draw() {
 
   song.fft.analyze();
   let amplitude = song.fft.getEnergy(20,300);
+  let amplitude_mid = song.fft.getEnergy(1000,6000);
   let wave = song.fft.waveform();
   let rotation = song.currentTime();
-  rotation *= 5;
+  rotation *= 5
   rotate(rotation);
 
   for (let t = -1; t<= 1; t+=2){
     // First shape
     beginShape();
-    for(let i = 0; i<=80; i++) {
+    for(let i = 0; i<=180; i++) {
       let index = floor(map(i,0,180,0,wave.length-1));
-      let r = map(wave[index],0,1,10,350);
-      let x = (r * -sin(i) * t)*1.3;
-      let y = (r * cos(i)%80)*1.3;
+      let r = map(wave[index]*(.7*Math.abs(amplitude_mid)),0,1,100,650);
+      let x = (r * -sin(i) * t)*1.3*(.7*Math.abs(amplitude_mid));
+      let y = (r * cos(i*amplitude)%80)*1.3;
       point(x,y);
     }
     endShape();
@@ -69,10 +70,10 @@ function draw() {
     beginShape();
     for(let i = 0; i<=180; i++) {
       let index = floor(map(i,0,180,0,wave.length-1))%20;
-      let r = map(wave[index],-1,1,150,350);
+      let r = map(wave[index]*(.7*Math.abs(amplitude_mid)),-1,1,150,350);
       let x = (r * -sin(i) * t%80)*2.4;
       let y = (r * cos(i))*1.4;
-      vertex(x,y);
+      point(x,y);
     }
     endShape();
 
@@ -80,7 +81,7 @@ function draw() {
     beginShape();
     for(let i = 0; i<=180; i++) {
       let index = floor(map(i,0,180,0,wave.length-1))%10;
-      let r = map(wave[index],-1,1,150,350);
+      let r = map(wave[index]*(.7*Math.abs(amplitude_mid)),-1,1,150,350);
       let x = (r * -sin(i) * t%80)*1.9;
       let y = (r * cos(i))*1.4;
       point(y,x);
@@ -91,7 +92,7 @@ function draw() {
     beginShape();
     for(let i = 0; i<=180; i++) {
       let index = floor(map(i,-1,180,1,wave.length-1))%70;
-      let r = map(wave[index],-1,1,10,350);
+      let r = map(wave[index]*(.7*Math.abs(amplitude_mid)),-1,1,10,350);
       let x = (r * -sin(i) * t)*2.;
       let y = (r * cos(i))*2.;
       point(x,y);
@@ -105,7 +106,7 @@ function draw() {
 
   for(let i = dusty.length - 1; i >= 0; i--){
     if (!dusty[i].edges()){
-      dusty[i].update(amplitude > 220); // use 'amplitude' here instead of 'amp'
+      dusty[i].update(amplitude > 200); // use 'amplitude' here instead of 'amp'
       dusty[i].show();
     } else {
       dusty.splice(i, 1);
