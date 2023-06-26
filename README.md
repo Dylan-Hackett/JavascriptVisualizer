@@ -17,7 +17,7 @@ Click anywhere on the screen to start the audio playback and visualizer. If you 
 
 Warning: This program uses flashing lights that may be intense for some users.
 
-Code Explanation
+## Code Explanation
 The main script (usually contained in a sketch.js file) controls the setup, drawing and interactivity of the program. Here are the core functions:
 
 setup(): This function is called once when the program starts. It's used to define initial environment properties such as screen size and input events and to load the audio file.
