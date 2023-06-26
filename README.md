@@ -1,5 +1,6 @@
 # JavascriptVisualizer
 Audio Reactive Evil Eye Visualizer
+
 The Evil Eye Visualizer is an audio visualization application that creates a captivating visual spectacle based on the frequencies and amplitudes in an audio file. It utilizes the p5.js library and features a spectrum analyzer built with Fast Fourier Transform algorithms.
 
 How it works
