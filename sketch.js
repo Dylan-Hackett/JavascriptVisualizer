@@ -6,7 +6,7 @@ let input;
 let defaultButton;
 let beginning = false;
 let warningDisplayed = false;
-let defaultSong = 'deceit.wav'; 
+let defaultSong = 'deceit.mp3'; 
 let defaultWindow = document.getElementById('loadDefault')
 
 function setup() {
