@@ -35,7 +35,7 @@ function drawShape(t, indexFunction, rFunction, xFunction, yFunction) {
   endShape();
 }
 function handleParticles(particles, ParticleClass, amplitude) {
-  if (particles.length < 1000) { // Limit particle count
+  if (particles.length < 1000) { 
     let d = new ParticleClass();
     particles.push(d);
   }
@@ -129,19 +129,19 @@ function mouseClicked() {
 }
 
 class Dust {
-  constructor(radiusMultiplier = 1, size = 1){  // default values added
+  constructor(radiusMultiplier = 1, size = 1){  
     radiusMultiplier = (typeof radiusMultiplier === 'number' && isFinite(radiusMultiplier)) ? radiusMultiplier : 1;
     let randomValue = random(0.0001,0.0001);
     randomValue = (typeof randomValue === 'number' && isFinite(randomValue)) ? randomValue : 0.0001;
     this.position = p5.Vector.random2D().mult(radiusMultiplier);
     this.velocity = createVector(0,0);
     this.accelerate = this.position.copy().mult(randomValue);
-    this.alpha = 255; //New property for fading effect
+    this.alpha = 255; 
     this.size = size;
   }
 
   update(amplitude, cond){
-    let amp = map(amplitude, 0, 255, 0, 5); // Scale the amplitude to a suitable range
+    let amp = map(amplitude, 0, 255, 0, 5); 
     let randomChange = p5.Vector.random2D().mult(random(0.1)).mult(amp);
     this.accelerate.add(randomChange);
     this.velocity.add(this.accelerate);
@@ -151,7 +151,7 @@ class Dust {
       this.position.add(this.velocity);
       this.position.add(this.velocity);
     }
-    this.alpha -= 0.001; //Decrease alpha over time
+    this.alpha -= 0.001; 
   }
 
   edges(){
@@ -168,12 +168,12 @@ class Dust {
 
 class DustLarge extends Dust {
   constructor(){
-    super(400, 4); // passing the different parameters to the super class
+    super(400, 4); 
   }
 }
 class DustExtraLarge extends Dust {
   constructor(){
-    super(550, 6); // passing the different parameters to the super class
+    super(550, 6); 
   }
 }
 
