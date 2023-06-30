@@ -3,14 +3,21 @@ let dusty = [];
 let dustyLarge = [];
 let dustyExtraLarge = [];
 let input;
+let defaultButton;
 let beginning = false;
 let warningDisplayed = false;
+let defaultSong = 'deceit.wav'; 
+let defaultWindow = document.getElementById('loadDefault')
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
   angleMode(DEGREES);
+  
   input = select('#fileinput');
   input.changed(loadFile);
+
+  defaultButton = select('#loadDefault');
+  defaultButton.mousePressed(loadDefault);
 }
 
 function loadFile() {
@@ -19,6 +26,17 @@ function loadFile() {
   }
 
   song = loadSound(input.elt.files[0], () => {
+    warningDisplayed = true;
+    redraw();
+  });
+}
+
+function loadDefault() {
+  if (song) {
+    song.stop();
+  }
+  defaultWindow.style.display  = 'none'
+  song = loadSound(defaultSong, () => {
     warningDisplayed = true;
     redraw();
   });
